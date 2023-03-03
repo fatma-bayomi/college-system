@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>user profile</title>
+    <!-- <link rel="stylesheet" href="master.css"></link.> -->
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
+
+     ::selection {
+        color: #0b2350;
+        background: #fff;
+    }
+
+    nav {
+        position: fixed;
+        top: 0px;
+        background: #0b2350;
+        width: 100%;
+        padding: 10px 10px;
+        z-index: 12;
+    }
+
+    nav .menu {
+        max-width: 1250px;
+        margin: auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 20px;
+    }
+
+    .menu .logo a {
+        text-decoration: none;
+        color: #fff;
+        font-size: 35px;
+        font-weight: 600;
+    }
+
+    .menu ul {
+        display: inline-flex;
+    }
+
+    .menu ul li {
+        list-style: none;
+        margin-left: 7px;
+    }
+
+    .menu ul li:first-child {
+        margin-left: 0px;
+    }
+
+    .menu ul li a {
+        text-decoration: none;
+        color: #fff;
+        font-size: 18px;
+        font-weight: 500;
+        padding: 8px 15px;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+    }
+
+    .menu ul li a:hover {
+        background: #fff;
+        color: black;
+    }
+
+    body {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        background: linear-gradient(135deg, #062568, #7d889c);
+    }
+
+    .container {
+        max-width: 700px;
+        width: 100%;
+        background-color: #fff;
+        padding: 25px 30px;
+        border-radius: 5px;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .container .title {
+        font-size: 25px;
+        font-weight: 500;
+        position: relative;
+    }
+
+    .container .title::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 3px;
+        width: 30px;
+        border-radius: 5px;
+        background: linear-gradient(135deg, #062568, #7d889c);
+    }
+
+    .content form .user-details {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin: 20px 0 12px 0;
+    }
+
+    form .user-details .input-box {
+        margin-bottom: 15px;
+        width: calc(100% / 2 - 20px);
+    }
+
+    form .input-box span.details {
+        display: block;
+        font-weight: 500;
+        margin-bottom: 5px;
+    }
+
+    .user-details .input-box input {
+        height: 45px;
+        width: 100%;
+        outline: none;
+        font-size: 16px;
+        border-radius: 5px;
+        padding-left: 15px;
+        border: 1px solid #ccc;
+        border-bottom-width: 2px;
+        transition: all 0.3s ease;
+    }
+
+    .user-details .input-box input:focus,
+    .user-details .input-box input:valid {
+        border-color: #2e2731;
+    }
+
+    form .gender-details .gender-title {
+        font-size: 20px;
+        font-weight: 500;
+    }
+
+    form .category {
+        display: flex;
+        width: 80%;
+        margin: 14px 0;
+        justify-content: space-between;
+    }
+
+    form .category label {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    form .category label .dot {
+        height: 18px;
+        width: 18px;
+        border-radius: 50%;
+        margin-right: 10px;
+        background: #d9d9d9;
+        border: 5px solid transparent;
+        transition: all 0.3s ease;
+    }
+
+    #dot-1:checked~.category label .one,
+    #dot-2:checked~.category label .two,
+    #dot-3:checked~.category label .three {
+        background: #909396;
+        border-color: #2e2731;
+    }
+
+    form input[type="radio"] {
+        display: none;
+    }
+
+    form .button {
+        height: 45px;
+        margin: 35px 0
+    }
+
+    form .button input {
+        height: 100%;
+        width: 100%;
+        border-radius: 5px;
+        border: none;
+        color: #fff;
+        font-size: 18px;
+        font-weight: 500;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        background: linear-gradient(135deg, #062568, #7d889c);
+    }
+
+    form .button input:hover {
+        /* transform: scale(0.99); */
+        background: linear-gradient(-135deg, #062568, #7d889c);
+    }
+
+    @media(max-width: 584px) {
+        .container {
+            max-width: 100%;
+        }
+        form .user-details .input-box {
+            margin-bottom: 15px;
+            width: 100%;
+        }
+        form .category {
+            width: 100%;
+        }
+        .content form .user-details {
+            max-height: 300px;
+            overflow-y: scroll;
+        }
+        .user-details::-webkit-scrollbar {
+            width: 5px;
+        }
+    }
+
+    @media(max-width: 459px) {
+        .container .content .category {
+            flex-direction: column;
+        }
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+        background: #f3f3f3;
+    }
+
+    .wrapper {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 900px;
+        height: 600px;
+        display: flex;
+        box-shadow: 0 1px 20px rgba(135deg, #062568, #7d889c);
+    }
+
+    .wrapper .left {
+        width: 50%;
+        background: linear-gradient(to right, #062568, #7d889c);
+        padding: 30px 25px;
+        border-top-left-radius: 5px;
+        text-align: center;
+        color: #fff;
+    }
+
+    .wrapper .left img {
+        margin-bottom: 30px;
+        border-bottom: 20px;
+    }
+
+    .wrapper .left h4 {
+        margin-bottom: 10px;
+    }
+
+    .wrapper .left p {
+        font-size: 20px;
+    }
+
+    .wrapper .right {
+        width: 65%;
+        background: #fff;
+        border-bottom-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+        padding: 40px;
+    }
+
+    .wrapper,
+    .container1 {
+        margin-bottom: 40px;
+    }
+
+    .right .info {
+        font-size: 25px;
+        font-weight: 500;
+        position: relative;
+    }
+
+    .right .info::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 3px;
+        width: 30px;
+        border-radius: 5px;
+        background: linear-gradient(135deg, #062568, #7d889c);
+    }
+
+    .right .projects {
+        font-size: 25px;
+        font-weight: 500;
+        position: relative;
+    }
+
+    .right .projects::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 30px;
+        height: 3px;
+        width: 30px;
+        border-radius: 5px;
+        background: linear-gradient(135deg, #062568, #7d889c);
+    }
+
+    .container1 .title1 {
+        font-size: 25px;
+        font-weight: 500;
+        position: relative;
+    }
+
+    .container1 .title1::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 3px;
+        width: 30px;
+        border-radius: 5px;
+        background: linear-gradient(135deg, #062568, #7d889c);
+    }
+
+</style>
+
+<body>
+
+<nav>
+    <div class="menu">
+        <div class="logo">
+            <a href="home">UNIVERSTY SYSTEM</a>
+        </div>
+        <ul>
+            <li><a href="home">Home</a></li>
+            <li>
+                <a href="qrcode">Attendance</a>
+            </li>
+            <li><a href="login">Login</a></li>
+            <li><a href="contact">Contact</a></li>
+            <li><a href="register">Register</a></li>
+        </ul>
+    </div>
+    <span class="logout">
+        <a href="{% url 'logout' %}">Logout</a>
+    </span>
+</nav>
+
+<div class="wrapper">
+    <div class="left">
+        <img src="https://cdn.iconscout.com/icon/free/png-256/laptop-user-1-1179329.png" alt="user" width="100">
+        <h4 name="user">{{request.user}}</h4>
+        <p>full stack developer</p>
+    </div>
+    <div class="right">
+        <div class="info">
+            <h3>information</h3>
+        </div>
+        <div class="info_data">
+            <div class="data">
+                <h4>Email:</h4>
+                <p name="email">{{request.user.email}}</p>
+            </div>
+
+        </div>
+        <div class="container1">
+            <div class="title1">documents</div>
+            <div class="content1">
+                <form action="#"></form>
+                <div class="document_details1">
+                    <div class="input_box1">
+                        <span class="details"></span>
+                        <h3 class="link"><a
+                                href="https://drive.google.com/drive/folders/1svliQVQMMWg-aLp3rJWJQrxMrVZVQZPq"
+                                target="_blank">Information System</a></h3>
+                    </div>
+                    <div class="input_box1">
+                        <span class="details"></span>
+                        <h3 class="link"><a
+                                href="https://drive.google.com/drive/folders/1t7uRHvPPktOWOU2jBxJ_woRv2OVz6j1i"
+                                target="_blank">Technical Writing</a></h3>
+                    </div>
+                    <div class="input_box1">
+                        <span class="details"></span>
+                        <h3 class="link"><a
+                                href="https://drive.google.com/drive/folders/1sxi4ITMxsnWlrefq4Q_FZJ6yvUKzqSgO"
+                                target="_blank"> OOP</a></h3>
+                    </div>
+                    <div class="input_box1">
+                        <span class="details"></span>
+                        <h3 class="link"><a
+                                href="https://drive.google.com/drive/folders/1t2CS2VAjj42Wp87sM_dMr5M_lbsVdV70"
+                                target="_blank"> Math 3</a></h3>
+                    </div>
+                    <div class="input_box1">
+                        <span class="details"></span>
+                        <h3 class="link"><a
+                                href="https://drive.google.com/drive/folders/1tU_BFlQGTGyRIEAUjUrhsD-zZmnuH-CC"
+                                target="_blank"> Business adminstration</a></h3>
+                    </div>
+                    <div class="input_box1">
+                        <span class="details"></span>
+                        <h3 class="link"><a
+                                href="https://drive.google.com/drive/folders/1tIfsKfwdvS4OZ2Tt-R_PUUfxP7y2UFnR"
+                                target="_blank"> Discrete structure</a></h3>
+                    </div>
+                    <div class="input_box1">
+                        <span class="details"></span>
+                        <h3 class="link"><a
+                                href="https://drive.google.com/drive/folders/1tUA2kLOr6DoA5Pt-FQtG2OmzI4YyRqE3"
+                                target="_blank ">Project Managment </a></h3>
+                    </div>
+                    <div class="input_box">
+                        <span class="details"></span>
+                        <h3 class="link"><a
+                                href="quiz"
+                                target="_blank ">Start Quiz </a></h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>
